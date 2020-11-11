@@ -13,13 +13,13 @@ export class Read extends React.Component {
     //this methord life cycle hooks its called when the component comes active in the view we get an event
     componentDidMount() {
 //help to get the response 
-        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+        axios.get('http://localhost:4000/api/movies')
 
             //allows the fullfilled state methord when everything works
             .then(
                 //function methord
                 (response) => {
-                    this.setState({ movies: response.data.Search })
+                    this.setState({ movies: response.data.movies})
                 })
             //if nothing happens or things dont work what do we want on the output
             .catch(

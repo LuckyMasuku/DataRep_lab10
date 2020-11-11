@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import axios from 'axios';
 export class Create extends React.Component {
 //
     constructor() {
@@ -41,6 +41,25 @@ export class Create extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         alert("Movie: " + this.state.Title + " " +this.state.Year + " " +this.state.Poster);
+        // passes the value 
+        //object with 3 values 
+        const newMovie ={
+            title:this.state.Title,
+            year: this.state.Year,
+            poster: this.state.Poster
+        }
+// allows the sycranese on the post
+//make recall to the saver and make a promise
+//call back function if its fullfilled
+//use this url to dp a post request from this url
+        axios.post('http://localhost:4000/api/movies', newMovie)
+        .then((res)=>{
+          console.log(res);
+
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
         //form to add data 
     }
     render() {
