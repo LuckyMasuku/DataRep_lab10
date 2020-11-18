@@ -19,7 +19,7 @@ export class Read extends React.Component {
             .then(
                 //function methord
                 (response) => {
-                    this.setState({ movies: response.data.movies})
+                    this.setState({ movies: response.data})
                 })
             //if nothing happens or things dont work what do we want on the output
             .catch(
