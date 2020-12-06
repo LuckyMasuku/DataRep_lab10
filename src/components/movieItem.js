@@ -41,6 +41,8 @@ export class MovieItem extends React.Component {
                     </Card.Body>
                     
                     <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
+                    
+                    <Link to={"/edit/"+ this.props.movie._id}className="btn btn-primary">Edit</Link>
                 </Card>
 
 

@@ -77,12 +77,23 @@ app.get('/api/movies', (req, res)=>{
  })
 //when the conditions are met this function will used
 //allows the use of body purser
-app.get('/api/mpvies/:id',(req,res)=>{
+app.get('/api/movies/:id',(req,res)=>{
   console.log(req.params.id);
  // this find request will listen and return any movie or data with the same id
   MovieModel.findById(req.params.id, (err, data)=>{
     res.json(data);
   })
+
+})
+
+app.put('/api/movies/:id', (req, res)=>{
+  console.log("Update movie:" +req.params.id);
+  console.log(req, body);
+//find a record with an ID
+  MovieModel.findByIdAndUpdate(req.params.id,req.body,{new:true},
+    (err,data)=>{
+      res.send(data);
+    })
 
 })
 
