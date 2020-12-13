@@ -4,6 +4,7 @@ const port = 4000
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -12,7 +13,10 @@ app.use(function(req, res, next) {
   "Origin, X-Requested-With, Content-Type, Accept");
   next();
   });
-
+ //path for the folders
+  app.use(express.static(path.join(__dirname, '../build')));
+  //check the paths to see the directory where the folders are 
+  app.use('/static', express.static(path.join(__dirname,'build//static')));
   
 // used to pass the html body
 // parser application/xpress-www-form-urlencoded
@@ -125,7 +129,10 @@ MovieModel.findByIdAndDelete(req.params.id,(err, data)=>{
   res.send(data);
   })
 })
-
+//this function will send back the index file
+app.get('*', (req,res)=>{
+  res.sendFile(path.join(__dirname+'/../build/index.html'));
+})
 app.listen(port, () => {
 console.log(`Example app listening at http://localhost:${port}`)
 })
